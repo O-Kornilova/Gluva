@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Кастомні кольори */
+.bg-green-800 {
+  background-color: #4a7043;
+}
+.text-green-900 {
+  color: #3a5936;
+}
+.bg-cream-200 {
+  background-color: #f5e8c7;
+}
+.text-brown-800 {
+  color: #8b5e3c;
+}
+
+@keyframes marquee-text {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee-text {
+  animation: marquee-text 15s linear infinite;
+  display: inline-block;
+  white-space: nowrap;
+}
+@keyframes marquee-text {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
