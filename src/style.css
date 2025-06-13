@@ -28,22 +28,14 @@ h3 {
 
 @keyframes marquee-text {
   0% {
-    transform: translateX(0);
+    transform: translateX(0) translateY(-15px);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%) translateY(-15px);
   }
 }
 .animate-marquee-text {
   animation: marquee-text 15s linear infinite;
   display: inline-block;
   white-space: nowrap;
-}
-@keyframes marquee-text {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
 }

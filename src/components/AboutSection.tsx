@@ -7,7 +7,10 @@ gsap.registerPlugin(ScrollTrigger)
 const AboutSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
+  const marqueeRef = useRef<HTMLDivElement>(null)
+  const marqueeContainerRef = useRef<HTMLDivElement>(null)
   const [futureDate, setFutureDate] = useState<string>('')
+  const [marqueeText, setMarqueeText] = useState<string>('')
 
   useEffect(() => {
     const today = new Date('2025-06-09')
@@ -19,7 +22,22 @@ const AboutSection: React.FC = () => {
       year: 'numeric'
     })
     setFutureDate(formattedDate)
-  }, [])
+
+    const updateMarqueeText = () => {
+      if (marqueeRef.current && marqueeContainerRef.current) {
+        const containerWidth = marqueeContainerRef.current.clientWidth || 1000
+        const textWidth = marqueeRef.current.scrollWidth || 300
+        const repeats = Math.ceil(containerWidth / textWidth) + 2
+        const baseText = `Свіженький зріз планується ${futureDate} - `
+        setMarqueeText(Array(repeats).fill(baseText).join(''))
+      }
+    }
+
+    updateMarqueeText()
+    window.addEventListener('resize', updateMarqueeText)
+
+    return () => window.removeEventListener('resize', updateMarqueeText)
+  }, [futureDate])
 
   useEffect(() => {
     if (textRef.current) {
@@ -45,20 +63,40 @@ const AboutSection: React.FC = () => {
     }
   }, [])
 
+  useEffect(() => {
+    if (marqueeRef.current && marqueeContainerRef.current) {
+      const containerWidth = marqueeContainerRef.current.clientWidth
+      const textWidth = marqueeRef.current.scrollWidth
+
+      gsap.fromTo(
+        marqueeRef.current,
+        {
+          x: containerWidth
+        },
+        {
+          x: -textWidth,
+          duration: 20,
+          repeat: -1,
+          ease: 'linear'
+        }
+      )
+    }
+  }, [marqueeText])
   return (
     <section
       ref={sectionRef}
       className='min-h-screen bg-cream-200 flex flex-col items-center justify-start relative'
     >
-      <div className='w-full text-black overflow-hidden whitespace-nowrap h-64 relative flex items-center max-h-[200px]'>
+      <div
+        ref={marqueeContainerRef}
+        className='w-full text-black overflow-hidden whitespace-nowrap h-64 relative flex items-center max-h-[200px]'
+      >
         <div
-          className='absolute w-max animate-marquee-text'
+          ref={marqueeRef}
+          className='absolute w-max flex items-center'
           style={{ transform: 'translateY(-15px)' }}
         >
-          <span className='inline-block'>
-            Свіженький зріз планується {futureDate} - Свіженький зріз планується{' '}
-            {futureDate} -
-          </span>
+          <span className='inline-block'>{marqueeText}</span>
         </div>
       </div>
 
