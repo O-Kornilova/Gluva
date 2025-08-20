@@ -9,7 +9,7 @@ const ImageClipBox = ({ src, clipClass }) => (
 
 const Contact = () => {
   return (
-    <div id='contact' className='my-20 min-h-96 w-screen  px-10'>
+    <div id='contact' className='my-20 min-h-96 w-screen  px-2 md:px-10'>
       <div className='relative rounded-lg bg-black py-24 text-blue-50 sm:overflow-hidden'>
         <div className='absolute -left-20 top-0 hidden h-full w-72 overflow-hidden sm:block lg:left-20 lg:w-96'>
           <ImageClipBox src='/img/22.png' clipClass='contact-clip-path-1' />
@@ -22,7 +22,7 @@ const Contact = () => {
         <div className='absolute -top-40 left-20 w-60 sm:top-1/2 md:left-auto md:right-10 lg:top-20 lg:w-80 max-sm:right-0 max-sm:scale-[60%]'>
           <ImageClipBox
             src='/img/R_R-8.webp'
-            clipClass='absolute md:scale-125'
+            clipClass='absolute md:scale-125 hidden sm:block'
           />
           <ImageClipBox
             src='/img/24.web'
@@ -37,7 +37,7 @@ const Contact = () => {
 
           <AnimatedTitle
             title='Найсвіжіші продукти <br /> для Вашого столу.'
-            className='special-font !md:text-[6.2rem] w-full font-zentry !text-5xl !font-black !leading-[.9]'
+            className='special-font w-full font-zentry text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black leading-tight'
           />
 
           <Button title='контакти' containerClass='mt-10 cursor-pointer' />
