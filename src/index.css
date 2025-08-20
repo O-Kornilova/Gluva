@@ -44,11 +44,11 @@ body {
   }
 
   .nav-hover-btn {
-    @apply relative ms-10 font-general text-xs uppercase text-blue-50 after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-white cursor-pointer;
+    @apply relative ms-3 sm:ms-10 font-general text-xs uppercase text-blue-50 after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-white cursor-pointer;
   }
 
   .floating-nav {
-    @apply bg-black rounded-lg border;
+    @apply bg-black rounded-lg border px-2 sm:px-4;
   }
 
   .absolute-center {
@@ -69,19 +69,19 @@ body {
   }
 
   .hero-heading {
-    @apply uppercase font-zentry font-black text-5xl sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem];
+    @apply uppercase font-zentry font-black text-4xl sm:text-5xl sm:right-10 md:text-7xl lg:text-9xl xl:text-[12rem];
   }
 
   .about-subtext {
-    @apply absolute bottom-[-80dvh] left-1/2 w-full max-w-96 -translate-x-1/2 text-center font-circular-web text-lg md:max-w-[34rem];
+    @apply absolute bottom-[-80dvh] left-1/2 w-full max-w-80 sm:max-w-96 -translate-x-1/2 text-center font-circular-web text-base sm:text-lg md:max-w-[34rem] px-4 sm:px-0;
   }
 
   .about-image {
-    @apply absolute left-1/2 top-0 z-20 h-[60vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:w-[30vw];
+    @apply absolute left-1/2 top-0 z-20 h-[50vh] sm:h-[60vh] w-80 sm:w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:w-[30vw];
   }
 
   .animated-title {
-    @apply flex flex-col gap-1 text-7xl uppercase leading-[.8] text-white sm:px-32 md:text-[6rem];
+    @apply flex flex-col gap-1 text-4xl sm:text-5xl md:text-7xl uppercase leading-[.8] text-white px-4 sm:px-8 md:px-32 lg:text-[6rem];
   }
 
   .animated-word {
@@ -92,34 +92,34 @@ body {
   }
 
   .bento-tilt_1 {
-    @apply relative border-hsla col-span-2 overflow-hidden rounded-md transition-transform duration-300 ease-out;
+    @apply relative border-hsla col-span-2 md:col-span-1 overflow-hidden rounded-md transition-transform duration-300 ease-out;
   }
 
   .bento-tilt_2 {
-    @apply relative col-span-1 row-span-1 overflow-hidden rounded-md transition-transform duration-300 ease-out;
+    @apply relative col-span-2 sm:col-span-1 row-span-1 overflow-hidden rounded-md transition-transform duration-300 ease-out;
   }
 
   .bento-title {
-    @apply uppercase md:text-6xl text-4xl font-black font-zentry;
+    @apply uppercase text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-black font-zentry leading-tight;
   }
 
   .story-img-container {
-    @apply relative md:h-dvh h-[90vh] w-full;
+    @apply relative h-[70vh] sm:h-[80vh] md:h-[90vh] lg:h-dvh w-full;
     filter: url('#flt_tag');
   }
 
   .story-img-mask {
-    @apply absolute left-0 top-0 size-full overflow-hidden md:left-[20%] md:top-[-10%] md:size-4/5;
+    @apply absolute left-0 top-0 size-full overflow-hidden sm:left-[10%] md:left-[20%] sm:top-[-5%] md:top-[-10%] sm:size-[90%] md:size-4/5;
     clip-path: polygon(4% 0, 83% 21%, 100% 73%, 0% 100%);
   }
 
   .story-img-content {
-    @apply absolute w-full md:h-dvh h-[50dvh] opacity-100 left-10 top-16 md:left-0 md:top-10 lg:left-[-300px] lg:top-[-100px];
+    @apply absolute w-full h-[40vh] sm:h-[45vh] md:h-[50dvh] lg:h-dvh opacity-100 left-4 sm:left-6 md:left-10 top-8 sm:top-12 md:top-16 lg:left-0 lg:top-10 xl:left-[-300px] xl:top-[-100px];
     transform: translate3d(0, 0, 0) rotateX(0) rotateY(0) rotateZ(0) scale(1);
   }
 
   .gallery-img-container {
-    @apply size-64 overflow-hidden bg-violet-300;
+    @apply size-48 sm:size-56 md:size-64 overflow-hidden bg-violet-300;
   }
 
   .gallery-img {
@@ -127,7 +127,7 @@ body {
   }
 
   .gallery-img-4 {
-    @apply sm:size-80 md:h-96 md:w-[25rem] rounded-lg;
+    @apply size-56 sm:size-64 md:size-80 lg:h-96 lg:w-[25rem] rounded-lg;
   }
 
   .sword-man-clip-path {
@@ -141,29 +141,130 @@ body {
   .contact-clip-path-2 {
     clip-path: polygon(29% 15%, 85% 30%, 50% 100%, 10% 64%);
   }
+
+  /* Додаткові мобільні стилі */
+  .mobile-padding {
+    @apply px-4 sm:px-6 md:px-8 lg:px-10;
+  }
+
+  .mobile-text {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+
+  .mobile-heading {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  .mobile-grid {
+    @apply grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+  }
+
+  .mobile-flex {
+    @apply flex-col sm:flex-row;
+  }
+
+  .mobile-gap {
+    @apply gap-2 sm:gap-4 md:gap-6 lg:gap-8;
+  }
+
+  .mobile-margin {
+    @apply my-4 sm:my-6 md:my-8 lg:my-10;
+  }
+
+  .mobile-rounded {
+    @apply rounded-lg sm:rounded-xl md:rounded-2xl;
+  }
+
+  /* Спеціальні стилі для ProductCard на мобільних */
+  .product-card-mobile {
+    @apply p-3 sm:p-4 md:p-5;
+  }
+
+  .product-controls-mobile {
+    @apply flex-col sm:flex-row gap-2 sm:gap-4;
+  }
+
+  .product-button-mobile {
+    @apply w-6 h-6 sm:w-8 sm:h-8 text-sm sm:text-base;
+  }
+
+  .product-price-mobile {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+
+  .product-quantity-mobile {
+    @apply text-base sm:text-lg font-bold;
+  }
+
+  .product-order-btn-mobile {
+    @apply px-4 py-2 sm:px-6 text-sm sm:text-base;
+  }
+
+  /* FAQ мобільні стилі */
+  .faq-mobile-padding {
+    @apply px-4 sm:px-6 md:px-8 lg:px-16;
+  }
+
+  .faq-question-mobile {
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+  }
+
+  .faq-answer-mobile {
+    @apply text-sm sm:text-base md:text-lg;
+  }
 }
 
-.indicator-line {
-  @apply h-1 w-px rounded-full bg-white transition-all duration-200 ease-in-out;
+/* Мобільні breakpoints для indicator-line */
+@media (max-width: 640px) {
+  .indicator-line {
+    @apply h-0.5 w-px;
+  }
+
+  .indicator-line.active {
+    animation: indicator-line-mobile 0.5s ease infinite;
+    animation-delay: calc(var(--animation-order) * 0.1s);
+  }
 }
 
-.indicator-line.active {
-  animation: indicator-line 0.5s ease infinite;
-  animation-delay: calc(var(--animation-order) * 0.1s);
-}
-
-@keyframes indicator-line {
+@keyframes indicator-line-mobile {
   0% {
-    height: 4px;
+    height: 2px;
     transform: translateY(-0px);
   }
   50% {
-    height: 16px;
-    transform: translateY(-4px);
+    height: 8px;
+    transform: translateY(-2px);
   }
   100% {
-    height: 4px;
+    height: 2px;
     transform: translateY(-0px);
+  }
+}
+
+/* Додаткові responsive утиліти */
+@layer utilities {
+  .responsive-container {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .responsive-section {
+    @apply py-8 sm:py-12 md:py-16 lg:py-20;
+  }
+
+  .responsive-card {
+    @apply p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl;
+  }
+
+  .responsive-button {
+    @apply px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base rounded-lg sm:rounded-xl;
+  }
+
+  .responsive-icon {
+    @apply w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6;
+  }
+
+  .responsive-avatar {
+    @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12;
   }
 }
 
@@ -273,76 +374,92 @@ body {
 }
 /* Секція */
 .faq_section {
-  background: #ffd400; /* жовтий фон */
-  padding: 30px 0;
+  background: #ffd400;
+  padding: 4rem 0;
+  min-height: auto;
 }
 
 /* Контейнер */
 .nexus {
-  --total: 3;
-  /* --height: 100vh; */
-  --margin: 1.6rem;
+  --margin: 2rem;
+  --mobile-margin: 1rem;
 
-  height: calc(var(--height) * var(--total));
-  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--margin);
 }
 
-/* Sticky блок */
-.nexus__sticky {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-  position: sticky;
-  top: 0;
-  padding: var(--margin);
+/* Заголовок секції */
+.nexus__header {
+  margin-bottom: 3rem;
+}
+
+.faq-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  position: static !important;
+  mix-blend-mode: normal !important;
+  z-index: auto !important;
+}
+
+.faq-title h2,
+.faq-title .animated-title {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+  color: #000 !important;
+  text-transform: uppercase;
+  text-align: left;
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* Контент з питаннями */
+.nexus__content {
   width: 100%;
 }
 
-/* 🔹 AnimatedTitle зверху зліва */
-.AnimatedTitle {
-  font-size: 3rem;
-  font-weight: 800;
-  /* color: #000;  */
-  text-transform: uppercase;
-  margin: 0;
-  align-self: flex-start;
-}
-
-/* 🔹 ul у нижній третині зліва */
+/* Список питань */
 .nexusAttributes {
   margin: 0;
   padding: 0;
   list-style: none;
+  width: 100%;
+  max-width: 800px;
 
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-
-  position: absolute;
-  bottom: 10%; /* нижня третина */
-  left: var(--margin);
-  width: 50%; /* можна підлаштувати */
+  gap: 1.5rem;
 }
 
 /* Елементи списку */
+.nexusItem {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 1rem;
+}
+
 .nexusItem__header {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   gap: 1rem;
   cursor: pointer;
-  font-weight: 600;
+  padding: 0.5rem 0;
 }
 
 .nexusItem__number {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   opacity: 0.6;
+  flex-shrink: 0;
+  width: 2rem;
 }
 
 .nexusItem__title {
-  font-size: 1.6rem;
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  font-weight: 600;
+  color: #666;
   transition: color 0.3s ease;
+  line-height: 1.3;
+  flex: 1;
 }
 
 .nexusItem__content {
@@ -350,18 +467,112 @@ body {
 }
 
 .nexusItem__contentInner {
-  padding: 0.5rem 0 1rem 2.2rem;
+  padding: 0.5rem 0 0 3rem;
 }
 
 .nexusItem__description {
-  font-size: 1rem;
-  line-height: 1.4;
-  color: #111;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  line-height: 1.5;
+  color: #333;
+  margin: 0;
 }
 
-/* Hover для заголовка */
+/* Hover ефекти */
 .nexusItem:hover .nexusItem__title {
   color: #000;
+}
+
+/* Мобільні стилі */
+@media (max-width: 768px) {
+  .faq_section {
+    padding: 2rem 0;
+  }
+
+  .nexus {
+    padding: 0 var(--mobile-margin);
+  }
+
+  .nexus__header {
+    margin-bottom: 2rem;
+  }
+
+  .faq-title h2,
+  .faq-title .animated-title {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+
+  .nexusAttributes {
+    gap: 1rem;
+  }
+
+  .nexusItem__header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .nexusItem__number {
+    font-size: 0.9rem;
+    width: auto;
+  }
+
+  .nexusItem__title {
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+  }
+
+  .nexusItem__contentInner {
+    padding: 0.5rem 0 0 0;
+  }
+
+  .nexusItem__description {
+    font-size: clamp(0.8rem, 3.5vw, 0.95rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .faq_section {
+    padding: 1.5rem 0;
+  }
+
+  .nexus {
+    padding: 0 0.5rem;
+  }
+
+  .nexusAttributes {
+    gap: 0.75rem;
+  }
+
+  .nexusItem__header {
+    gap: 0.25rem;
+  }
+
+  .nexusItem__title {
+    font-size: clamp(0.85rem, 4.5vw, 1.1rem);
+  }
+
+  .nexusItem__description {
+    font-size: clamp(0.75rem, 4vw, 0.9rem);
+    line-height: 1.4;
+  }
+}
+
+/* Стилі для великих екранів */
+@media (min-width: 1200px) {
+  .nexusAttributes {
+    max-width: 60%;
+  }
+
+  .nexusItem__title {
+    font-size: 1.6rem;
+  }
+
+  .nexusItem__description {
+    font-size: 1.1rem;
+  }
+
+  .nexusItem__contentInner {
+    padding: 0.75rem 0 0 3.5rem;
+  }
 }
 
 /* Mobile */
@@ -375,5 +586,8 @@ body {
   .nexusAttributes {
     width: 100%;
     bottom: 5%;
+  }
+  .animated-title {
+    @apply flex flex-col gap-1 text-5xl uppercase leading-[.8] text-white sm:px-24 md:text-[3rem];
   }
 }

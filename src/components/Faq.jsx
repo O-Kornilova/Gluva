@@ -1,43 +1,40 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
 import AnimatedTitle from './AnimatedTitle'
-
-gsap.registerPlugin(ScrollTrigger)
 
 export default function Faq () {
   const itemsRef = useRef([])
 
-  useEffect(() => {
-    const triggers = []
+  const handleMouseEnter = index => {
+    const item = itemsRef.current[index]
+    if (!item) return
 
-    itemsRef.current.forEach(item => {
-      const title = item.querySelector('.nexusItem__title')
-      const content = item.querySelector('.nexusItem__content')
+    const title = item.querySelector('.nexusItem__title')
+    const content = item.querySelector('.nexusItem__content')
 
-      gsap.set(content, { height: 0, opacity: 0 })
+    gsap.to(title, { color: '#000', duration: 0.3, ease: 'power2.out' })
+    gsap.fromTo(
+      content,
+      { height: 0, opacity: 0 },
+      { height: 'auto', opacity: 1, duration: 0.5, ease: 'power2.out' }
+    )
+  }
 
-      const trigger = ScrollTrigger.create({
-        trigger: item,
-        start: 'top 80%',
-        onEnter: () => {
-          gsap.to(title, { color: '#000', duration: 0.4 })
-          gsap.fromTo(
-            content,
-            { height: 0, opacity: 0 },
-            { height: 'auto', opacity: 1, duration: 0.6 }
-          )
-        },
-        onLeaveBack: () => {
-          gsap.to(title, { color: '#666', duration: 0.4 })
-          gsap.to(content, { height: 0, opacity: 0, duration: 0.6 })
-        }
-      })
-      triggers.push(trigger)
+  const handleMouseLeave = index => {
+    const item = itemsRef.current[index]
+    if (!item) return
+
+    const title = item.querySelector('.nexusItem__title')
+    const content = item.querySelector('.nexusItem__content')
+
+    gsap.to(title, { color: '#666', duration: 0.3, ease: 'power2.out' })
+    gsap.to(content, {
+      height: 0,
+      opacity: 0,
+      duration: 0.3,
+      ease: 'power2.in'
     })
-
-    return () => triggers.forEach(t => t.kill())
-  }, [])
+  }
 
   const items = [
     {
@@ -65,48 +62,44 @@ export default function Faq () {
       title: 'Чим гливи корисні для організму?',
       text: 'Вони підтримують імунітет, нормалізують рівень холестерину та покращують роботу серцево-судинної системи.'
     },
+
     {
       number: '06',
-      title: 'Чи є у вас доставка свіжих глив додому?',
-      text: 'Так, ми доставляємо гриби прямо з ферми до вашого столу, зберігаючи їхній смак та свіжість.'
-    },
-    {
-      number: '07',
       title: 'Чи підходять гливи для веганських і вегетаріанських страв?',
-      text: 'Абсолютно! Вони чудово замінюють м’ясо завдяки своїй текстурі й насичують страви білком.'
-    },
-    {
-      number: '08',
-      title: 'Чому варто купити саме ваші гливи?',
-      text: 'Наші гливи вирощуються з любов’ю, без хімії, щодня збираються свіжими і мають відмінний смак, який оцінять усі гурмани.'
+      text: 'Абсолютно! Вони чудово замінюють мясо завдяки своїй текстурі й насичують страви білком.'
     }
   ]
 
   return (
     <section className='faq_section'>
       <div className='nexus'>
-        <AnimatedTitle
-          title='Часті питання'
-          sectionId='#story'
-          containerClass='mt-5 pointer-events-none mix-blend-difference relative z-10'
-        />
-        <div className='nexus__sticky'>
-          <ul className='nexusAttributes nexus__attributes'>
+        {/* Заголовок */}
+        <div className='nexus__header'>
+          <AnimatedTitle
+            title='Часті питання'
+            sectionId='#faq'
+            containerClass='faq-title'
+          />
+        </div>
+
+        {/* Список питань */}
+        <div className='nexus__content'>
+          <ul className='nexusAttributes'>
             {items.map((item, i) => (
               <li
                 key={i}
                 className='nexusItem'
                 ref={el => (itemsRef.current[i] = el)}
+                onMouseEnter={() => handleMouseEnter(i)}
+                onMouseLeave={() => handleMouseLeave(i)}
               >
-                <header className='nexusItem__header textCaption'>
+                <header className='nexusItem__header'>
                   <div className='nexusItem__number'>{item.number}</div>
                   <div className='nexusItem__title'>{item.title}</div>
                 </header>
                 <div className='nexusItem__content'>
                   <div className='nexusItem__contentInner'>
-                    <p className='nexusItem__description textBody4'>
-                      {item.text}
-                    </p>
+                    <p className='nexusItem__description'>{item.text}</p>
                   </div>
                 </div>
               </li>

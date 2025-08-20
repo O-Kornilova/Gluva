@@ -282,24 +282,6 @@ const Features = () => {
                       Залізо та мікроелементи для захисту організму.
                     </p>
                   </div>
-
-                  {/* Серце */}
-                  <div className='flex flex-col items-center bg-gray-900 rounded-xl p-3'>
-                    <div className='text-3xl mb-1'>❤️</div>
-                    <h3 className='font-semibold'>Здорове серце</h3>
-                    <p className='text-gray-400 text-xs text-center'>
-                      Антиоксиданти для профілактики хвороб серця.
-                    </p>
-                  </div>
-
-                  {/* Травлення */}
-                  <div className='flex flex-col items-center bg-gray-900 rounded-xl p-3 md:col-span-2'>
-                    <div className='text-3xl mb-1'>🌿</div>
-                    <h3 className='font-semibold'>Легке травлення</h3>
-                    <p className='text-gray-400 text-xs text-center'>
-                      Клітковина для здорового шлунку.
-                    </p>
-                  </div>
                 </div>
               }
             />
