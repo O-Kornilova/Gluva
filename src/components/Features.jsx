@@ -240,17 +240,13 @@ const Features = () => {
           <BentoCard
             src='img/fff.webp'
             isVideo={false}
-            title={
-              <>
-                Фермерські <b>гливи</b>
-              </>
-            }
+            title={<>Фермерські гливи</>}
             description='Ніжні фермерські гливи для смачних і корисних страв. 
       Відкрий нові рецепти супів, закусок і гарнірів прямо на своїй кухні!'
           />
         </BentoTilt>
 
-        <div className='grid h-[135vh] grid-cols-2 grid-rows-3 gap-7'>
+        <div className='grid min-h-screen grid-cols-1 md:grid-cols-2 auto-rows-auto gap-5'>
           <BentoTilt className='bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2'>
             <BentoCard
               title={<>Гливи — більше ніж просто гриб</>}
@@ -287,7 +283,7 @@ const Features = () => {
             />
           </BentoTilt>
 
-          <BentoTilt className='bento-tilt_1 row-span-1 ms-32 md:col-span-1 md:ms-0'>
+          <BentoTilt className='bento-tilt_1 row-span-1 md:col-span-1 md:ms-0'>
             <ProductCard
               src='img/mushroom-recipe.jpg'
               isVideo={false}
@@ -310,9 +306,9 @@ const Features = () => {
           </BentoTilt>
 
           <BentoTilt className='bento-tilt_2'>
-            <div className='flex size-full flex-col justify-between bg-violet-300 p-5'>
+            <div className='flex size-full flex-col justify-center bg-violet-300 p-5'>
               <h1 className='bento-title special-font w-full text-black'>
-                Незабаром відкриття нашого кулінарного блогу
+                Незабаром відкриття нашої кулінарної сторінки
               </h1>
               <TiLocationArrow className='m-5 scale-[5] self-end' />
             </div>

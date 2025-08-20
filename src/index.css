@@ -92,13 +92,12 @@ body {
   }
 
   .bento-tilt_1 {
-    @apply relative border-hsla col-span-2 md:col-span-1 overflow-hidden rounded-md transition-transform duration-300 ease-out;
+    @apply relative border-hsla col-span-1 md:col-span-1 overflow-hidden rounded-md transition-transform duration-300 ease-out;
   }
 
   .bento-tilt_2 {
-    @apply relative col-span-2 sm:col-span-1 row-span-1 overflow-hidden rounded-md transition-transform duration-300 ease-out;
+    @apply relative col-span-1 md:col-span-1 row-span-1 overflow-hidden rounded-md transition-transform duration-300 ease-out min-h-[300px];
   }
-
   .bento-title {
     @apply uppercase text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-black font-zentry leading-tight;
   }
