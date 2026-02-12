@@ -16,12 +16,6 @@ my own improvements.
 - Modern Tailwind CSS styling
 - Optimized performance (Lighthouse score: XX)
 
-**My Custom Enhancements:**
-[ДОДАЙТЕ ЩО ВИ ЗМІНИЛИ/ДОДАЛИ]
-- Feature 1
-- Feature 2
-- Performance improvements
-
 ## Tech Stack
 
 - **Frontend:** React 18
