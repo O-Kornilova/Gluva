@@ -2,14 +2,7 @@ import { useRef, useState } from 'react'
 import { TiLocationArrow } from 'react-icons/ti'
 
 // ProductCard компонента
-const ProductCard = ({
-  src,
-  title,
-  description,
-  pricePerKg = 120,
-  isVideo = false,
-  onOrder
-}) => {
+const ProductCard = ({ src, title, description, pricePerKg = 120, isVideo = false, onOrder }) => {
   const [quantity, setQuantity] = useState(0.5) // початкова кількість 500г
 
   // Функція для визначення типу медіа
@@ -82,9 +75,7 @@ const ProductCard = ({
             (typeof description === 'string' ? (
               <p className='mt-3 w-full text-xs md:text-base'>{description}</p>
             ) : (
-              <div className='mt-3 w-full text-xs md:text-base'>
-                {description}
-              </div>
+              <div className='mt-3 w-full text-xs md:text-base'>{description}</div>
             ))}
         </div>
 
@@ -121,9 +112,7 @@ const ProductCard = ({
           {/* Загальна ціна та кнопка замовлення */}
           <div className='flex items-center justify-between bg-black bg-opacity-50 rounded-lg p-3 backdrop-blur-sm'>
             <div>
-              <div className='text-lg font-bold text-green-400'>
-                {totalPrice} ₴
-              </div>
+              <div className='text-lg font-bold text-green-400'>{totalPrice} ₴</div>
               <div className='text-xs opacity-75'>до сплати</div>
             </div>
 
@@ -206,9 +195,7 @@ const BentoCard = ({ src, title, description, isVideo = true }) => {
       <div className='relative z-10 flex size-full flex-col justify-between p-5 text-blue-50'>
         <div>
           <h1 className='bento-title special-font'>{title}</h1>
-          {description && (
-            <p className='mt-3 w-full text-xs md:text-base'>{description}</p>
-          )}
+          {description && <p className='mt-3 w-full text-xs md:text-base'>{description}</p>}
         </div>
       </div>
     </div>
@@ -228,9 +215,7 @@ const Features = () => {
     <section className='bg-black pb-52'>
       <div className='container mx-auto px-3 md:px-10'>
         <div className='px-5 py-32'>
-          <p className='font-circular-web text-lg text-blue-50'>
-            смачно і корисно
-          </p>
+          <p className='font-circular-web text-lg text-blue-50'>смачно і корисно</p>
           <p className='max-w-md font-circular-web text-lg text-blue-50 opacity-50'>
             Смачний акцент для ваших страв
           </p>
@@ -288,8 +273,7 @@ const Features = () => {
               src='img/mushroom-recipe.jpg'
               isVideo={false}
               pricePerKg={120}
-              onOrder={handleOrder}
-              title={<>Свіжі гливи</>}
+              title='Свіжі гливи'
               description='Найсвіжіші фермерські гливи прямо до вашого столу'
             />
           </BentoTilt>
@@ -299,8 +283,7 @@ const Features = () => {
               src='img/mushroom2.jpg'
               isVideo={false}
               pricePerKg={60}
-              onOrder={handleOrder}
-              title={<>Сушені гливи</>}
+              title='Сушені гливи'
               description='Рішення для будь-яких несподіваних ситуацій'
             />
           </BentoTilt>

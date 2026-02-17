@@ -21,7 +21,11 @@ const ProductCard = ({ src, title, description, pricePerKg = 120, isVideo = fals
   const totalPrice = (quantity * pricePerKg).toFixed(0)
 
   const handleOrder = () => {
-    const product = { id: title, name: title, pricePerKg }
+    const product = {
+      id: typeof title === 'string' ? title : String(title),
+      name: typeof title === 'string' ? title : 'Продукт',
+      pricePerKg
+    }
     addToCart(product, quantity)
     alert(`Додано в кошик: ${quantity} кг`)
   }

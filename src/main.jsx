@@ -1,16 +1,22 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async'
+import { BrowserRouter } from 'react-router-dom'
+import { CartProvider } from './context/CartContext'
+import { AuthProvider } from './context/AuthContext'
 import './index.css'
 import App from './App.jsx'
-import { CartProvider } from './context/CartContext'
-import { HelmetProvider } from 'react-helmet-async'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HelmetProvider>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </HelmetProvider>
-  </StrictMode>,
+    <BrowserRouter>
+      <HelmetProvider>
+        <AuthProvider>
+          <CartProvider>
+            <App />
+          </CartProvider>
+        </AuthProvider>
+      </HelmetProvider>
+    </BrowserRouter>
+  </StrictMode>
 )
