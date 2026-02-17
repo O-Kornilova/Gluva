@@ -1,46 +1,80 @@
-# 🍄 Gluva - Mushroom Farm Website
+# 🍄 Gluva - Mushroom Farm App
 
-Сучасний односторінковий сайт для фермерського господарства з продажу грибів гливи. Побудований з акцентом на performance, accessibility та user experience.
+Повноцінний веб-застосунок для фермерського господарства з продажу грибів гливи. Побудований з акцентом на production-ready архітектуру, реальні API інтеграції та повний e-commerce функціонал.
 
-## ✨ Особливості
+🌐 **Live:** [gluva.vercel.app](https://gluva.vercel.app)
+💻 **Code:** [github.com/O-Kornilova/Gluva](https://github.com/O-Kornilova/Gluva)
 
-- 🎨 Сучасний UI з анімаціями GSAP
-- 🛒 Інтерактивний кошик з Context API
-- ⚡ Оптимізований bundle через lazy loading
-- 📱 Повністю responsive дизайн
-- ♿ Accessibility-friendly
-- 🧪 Unit тести з Vitest (75% coverage)
-- 🔍 SEO оптимізація
+## ✨ Функціонал
 
-## 🛠️ Технології
+- 🔐 **Авторизація** - Google OAuth + Email/Password через Firebase Auth
+- 🛒 **E-commerce** - каталог товарів, кошик, оформлення замовлень
+- 🚚 **Доставка** - інтеграція з Nova Poshta API (пошук міст і відділень), Укрпошта, Самовивіз
+- 👨‍💼 **Admin панель** - управління замовленнями, зміна статусів
+- 💾 **Firestore** - збереження замовлень в реальному часі
+- 🎨 **Анімації** - GSAP ScrollTrigger, 3D Bento tilt ефекти
+- ⚡ **Performance** - lazy loading, code splitting, bundle analysis
+- 🧪 **Тести** - unit тести з Vitest (75% coverage)
+- 🔍 **SEO** - meta tags, Open Graph, sitemap, robots.txt
+- 📱 **Responsive** - адаптивний дизайн для всіх пристроїв
 
-- **React 18** - UI фреймворк
-- **Vite** - Build tool
-- **Tailwind CSS** - Стилізація
-- **GSAP** - Анімації
-- **Vitest + RTL** - Тестування
-- **ESLint + Prettier** - Code quality
-- **Husky** - Git hooks
+## 🛠️ Технологічний стек
+
+| Категорія        | Технології                    |
+| ---------------- | ----------------------------- |
+| **Frontend**     | React 18, Vite, React Router  |
+| **Стилізація**   | Tailwind CSS                  |
+| **Анімації**     | GSAP, ScrollTrigger           |
+| **Backend**      | Firebase Auth, Firestore      |
+| **API**          | Nova Poshta API               |
+| **Тестування**   | Vitest, React Testing Library |
+| **Code Quality** | ESLint, Prettier, Husky       |
+| **Deploy**       | Vercel (CI/CD)                |
 
 ## 📦 Архітектура
 
 ```
 src/
 ├── components/
-│   ├── common/          # Переіспуваємі компоненти
-│   ├── features/        # Feature-специфічні компоненти
-│   ├── layout/          # Layout компоненти
-│   └── sections/        # Секції сторінки
-├── context/             # React Context
-├── hooks/               # Custom hooks
-└── config/              # Конфігурація
+│   ├── common/          # Повнорно використані компоненти (Button, SEO, AnimatedTitle)
+│   ├── features/        # Feature компоненти (Cart, Auth, BentoCard, ProductCard, Delivery)
+│   ├── layout/          # Layout компоненти (Navbar, Footer)
+│   └── sections/        # Секції сторінки (Hero, About, Features, FAQ, Contact)
+├── context/             # React Context (CartContext, AuthContext)
+├── hooks/               # Custom hooks (useBentoTilt, useProductQuantity)
+├── pages/               # Сторінки (Home, CartPage, AdminPage)
+├── services/            # API сервіси (novaPoshtaService, ukrPoshtaService)
+└── config/              # Конфігурація (firebase, site, products)
 ```
+
+## 🏗️ Ключові архітектурні рішення
+
+**Separation of Concerns:**
+
+- Логіка винесена в custom hooks (`useBentoTilt`)
+- Презентаційні компоненти відокремлені від логіки
+- API сервіси в окремому шарі (`services/`)
+
+**State Management:**
+
+- `CartContext` з `useReducer` для глобального стану кошика
+- `AuthContext` для стану авторизації
+- Firebase Firestore для persistence
+
+**Component Composition:**
+
+- `ProductCard` розбитий на `MediaDisplay`, `QuantityControl`, `PriceDisplay`
+- `Features` секція використовує `BentoTilt`, `BentoCard`, `NutritionCard`
 
 ## 🚀 Швидкий старт
 
 ```bash
 # Встановити залежності
 npm install
+
+# Створити .env файл
+cp .env.example .env
+# Заповнити змінні середовища
 
 # Запустити dev server
 npm run dev
@@ -58,32 +92,45 @@ npm run test:coverage
 npm run analyze
 ```
 
-## 📊 Performance
+## 🔑 Environment Variables
 
-- ✅ Lazy loading секцій
-- ✅ Code splitting
-- ✅ Image optimization
-- ✅ Tree shaking
-- ✅ Gzip compression
+```env
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+VITE_NOVA_POSHTA_API_KEY=
+```
 
 ## 🧪 Тестування
 
-Проект містить unit тести для критичних компонентів:
+```bash
+npm run test           # Запустити тести
+npm run test:coverage  # Coverage звіт
+```
 
-- Button component (100% coverage)
-- ProductCard component (78% coverage)
-- CartContext (70% coverage)
+Покриття тестами:
 
-## 📝 Code Quality
+- `Button` component — 100%
+- `ProductCard` component — 78%
+- `CartContext` — 70%
 
-- ESLint для лінтингу
-- Prettier для форматування
-- Husky pre-commit hooks
-- Автоматична перевірка коду перед комітом
+## 📊 Performance
 
-## 🌐 Deploy
+- ✅ Lazy loading всіх секцій
+- ✅ Code splitting (окремі chunks для кожної секції)
+- ✅ Bundle analysis через rollup-plugin-visualizer
+- ✅ Tree shaking
+- ✅ Gzip compression на Vercel
 
-Проект задеплоєний на Vercel: [gluva.vercel.app](https://gluva.vercel.app)
+## 🔒 Безпека
+
+- Firebase Security Rules для Firestore
+- Environment variables для секретних ключів
+- Protected routes для Admin панелі
+- Авторизовані домени в Firebase
 
 ## 📄 Ліцензія
 
