@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String   
+  name      String?  
+  isAdmin   Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  orders    Order[]  
+}
+
+// Товар
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  pricePerKg  Float
+  imageUrl    String?
+  inStock     Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt  
+
+  orderItems  OrderItem[]
+}
+
+// Замовлення
+model Order {
+  id         Int         @id @default(autoincrement())
+  userId     Int?        
+  name       String
+  phone      String
+  delivery   Json       
+  totalPrice Float
+  status     OrderStatus @default(new)
+  createdAt  DateTime    @default(now())
+
+  user       User?       @relation(fields: [userId], references: [id])
+  items      OrderItem[]
+}
+
+
+model OrderItem {
+  id          Int     @id @default(autoincrement())
+  orderId     Int
+  productId   Int
+  productName String  
+  pricePerKg  Float   
+  quantity    Float
+
+  order       Order   @relation(fields: [orderId], references: [id])
+  product     Product @relation(fields: [productId], references: [id])
+}
+
+
+enum OrderStatus {
+  new
+  processing
+  shipped
+  delivered
+  cancelled
+}
