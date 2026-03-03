@@ -5,21 +5,21 @@ const CartContext = createContext(null)
 const CART_ACTIONS = {
   ADD_ITEM: 'ADD_ITEM',
   REMOVE_ITEM: 'REMOVE_ITEM',
-  CLEAR_CART: 'CLEAR_CART'
+  CLEAR_CART: 'CLEAR_CART',
 }
 
 const cartReducer = (state, action) => {
   switch (action.type) {
     case CART_ACTIONS.ADD_ITEM: {
       const { product, quantity } = action.payload
-      const existing = state.items.find(item => item.productId === product.id)
+      const existing = state.items.find((item) => item.productId === product.id)
 
       if (existing) {
         return {
           ...state,
-          items: state.items.map(item =>
-            item.productId === product.id ? { ...item, quantity: item.quantity + quantity } : item
-          )
+          items: state.items.map((item) =>
+            item.productId === product.id ? { ...item, quantity: item.quantity + quantity } : item,
+          ),
         }
       }
 
@@ -31,15 +31,15 @@ const cartReducer = (state, action) => {
             productId: product.id,
             productName: product.name,
             pricePerKg: product.pricePerKg,
-            quantity
-          }
-        ]
+            quantity,
+          },
+        ],
       }
     }
     case CART_ACTIONS.REMOVE_ITEM:
       return {
         ...state,
-        items: state.items.filter(item => item.productId !== action.payload)
+        items: state.items.filter((item) => item.productId !== action.payload),
       }
     case CART_ACTIONS.CLEAR_CART:
       return { items: [] }
@@ -48,9 +48,6 @@ const cartReducer = (state, action) => {
   }
 }
 
-// Lazy initializer для useReducer — викликається тільки один раз при монтуванні.
-// Третій аргумент useReducer це саме функція-ініціалізатор, яка повертає початковий стан.
-// Так ми уникаємо повторного читання localStorage при кожному рендері.
 const initCart = () => {
   try {
     const saved = localStorage.getItem('gluva_cart')
@@ -77,7 +74,7 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: CART_ACTIONS.ADD_ITEM, payload: { product, quantity } })
   }
 
-  const removeFromCart = productId => {
+  const removeFromCart = (productId) => {
     dispatch({ type: CART_ACTIONS.REMOVE_ITEM, payload: productId })
   }
 
@@ -91,9 +88,9 @@ export const CartProvider = ({ children }) => {
       totalPrice,
       addToCart,
       removeFromCart,
-      clearCart
+      clearCart,
     }),
-    [cart.items, totalPrice]
+    [cart.items, totalPrice],
   )
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
