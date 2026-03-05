@@ -64,6 +64,7 @@ const LoginModal = ({ onClose }) => {
             type="password"
             placeholder="Пароль"
             value={password}
+            autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
             className="w-full bg-stone-800 text-stone-100 rounded-lg px-4 py-3 border border-stone-600 focus:border-amber-600 focus:outline-none placeholder-stone-500"
             required
