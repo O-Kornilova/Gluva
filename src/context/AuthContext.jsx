@@ -13,9 +13,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  // При старті додатку перевіряємо чи є збережений токен.
-  // Якщо є — робимо запит /auth/me щоб отримати дані юзера.
-  // Це замінює Firebase onAuthStateChanged.
   useEffect(() => {
     const token = localStorage.getItem('gluva_token')
     if (!token) {
