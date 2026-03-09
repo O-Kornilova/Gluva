@@ -18,6 +18,7 @@ const AdminPage = () => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState('orders')
+  const [savedMessage, setSavedMessage] = useState('')
 
   useEffect(() => {
     if (!user) {
@@ -67,8 +68,12 @@ const AdminPage = () => {
     try {
       await productsApi.update(productId, data)
       setProducts((prev) => prev.map((p) => (p.id === productId ? { ...p, ...data } : p)))
+      setSavedMessage('Збережено ✓')
+      setTimeout(() => setSavedMessage(''), 2000)
     } catch (err) {
       console.error('Помилка оновлення товару:', err)
+      setSavedMessage('Помилка ✗')
+      setTimeout(() => setSavedMessage(''), 2000)
     }
   }
 
@@ -84,6 +89,11 @@ const AdminPage = () => {
     <div className="min-h-screen bg-black text-white pt-24 pb-16">
       <div className="container mx-auto px-4 max-w-6xl">
         <h1 className="text-4xl font-bold mb-8">👨‍💼 Адмін панель</h1>
+        {savedMessage && (
+          <div className="fixed top-6 right-6 bg-amber-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg z-50 transition">
+            {savedMessage}
+          </div>
+        )}
 
         {/* Таби */}
         <div className="flex gap-4 mb-8">
