@@ -7,44 +7,52 @@
 
 ## ✨ Функціонал
 
-- 🔐 **Авторизація** - Google OAuth + Email/Password через Firebase Auth
-- 🛒 **E-commerce** - каталог товарів, кошик, оформлення замовлень
-- 🚚 **Доставка** - інтеграція з Nova Poshta API (пошук міст і відділень), Укрпошта, Самовивіз
-- 👨‍💼 **Admin панель** - управління замовленнями, зміна статусів
-- 💾 **Firestore** - збереження замовлень в реальному часі
-- 🎨 **Анімації** - GSAP ScrollTrigger, 3D Bento tilt ефекти
-- ⚡ **Performance** - lazy loading, code splitting, bundle analysis
-- 🧪 **Тести** - unit тести з Vitest (75% coverage)
-- 🔍 **SEO** - meta tags, Open Graph, sitemap, robots.txt
-- 📱 **Responsive** - адаптивний дизайн для всіх пристроїв
+- 🔐 **JWT Авторизація** — реєстрація, вхід, захищені роути
+- 🛒 **E-commerce** — каталог товарів, кошик, оформлення замовлень
+- 🚚 **Доставка** — інтеграція з Nova Poshta API, Укрпошта, Самовивіз
+- 👨‍💼 **Admin панель** — управління замовленнями і товарами (ціна, наявність)
+- 🎨 **Анімації** — GSAP ScrollTrigger, 3D Bento tilt ефекти
+- ⚡ **Performance** — lazy loading, code splitting, bundle analysis
+- 🧪 **Тести** — unit тести з Vitest (75% coverage)
+- 🔍 **SEO** — meta tags, Open Graph, sitemap, robots.txt
+- 📱 **Responsive** — адаптивний дизайн для всіх пристроїв
 
 ## 🛠️ Технологічний стек
 
-| Категорія        | Технології                    |
-| ---------------- | ----------------------------- |
-| **Frontend**     | React 18, Vite, React Router  |
-| **Стилізація**   | Tailwind CSS                  |
-| **Анімації**     | GSAP, ScrollTrigger           |
-| **Backend**      | Firebase Auth, Firestore      |
-| **API**          | Nova Poshta API               |
-| **Тестування**   | Vitest, React Testing Library |
-| **Code Quality** | ESLint, Prettier, Husky       |
-| **Deploy**       | Vercel (CI/CD)                |
+| Категорія        | Технології                                |
+| ---------------- | ----------------------------------------- |
+| **Frontend**     | React 18, Vite, React Router              |
+| **Стилізація**   | Tailwind CSS                              |
+| **Анімації**     | GSAP, ScrollTrigger                       |
+| **Backend**      | Node.js, Express                          |
+| **База даних**   | PostgreSQL, Prisma ORM                    |
+| **Авторизація**  | JWT                                       |
+| **API**          | Nova Poshta API                           |
+| **Тестування**   | Vitest, React Testing Library             |
+| **Code Quality** | ESLint, Prettier, Husky                   |
+| **Deploy**       | Vercel (frontend), Railway (backend + DB) |
 
 ## 📦 Архітектура
 
 ```
 src/
 ├── components/
-│   ├── common/          # Повнорно використані компоненти (Button, SEO, AnimatedTitle)
-│   ├── features/        # Feature компоненти (Cart, Auth, BentoCard, ProductCard, Delivery)
-│   ├── layout/          # Layout компоненти (Navbar, Footer)
-│   └── sections/        # Секції сторінки (Hero, About, Features, FAQ, Contact)
-├── context/             # React Context (CartContext, AuthContext)
-├── hooks/               # Custom hooks (useBentoTilt, useProductQuantity)
-├── pages/               # Сторінки (Home, CartPage, AdminPage)
-├── services/            # API сервіси (novaPoshtaService, ukrPoshtaService)
-└── config/              # Конфігурація (firebase, site, products)
+│   ├── common/       # Повторно використані компоненти (Button, SEO, AnimatedTitle)
+│   ├── features/     # Feature компоненти (Cart, Auth, BentoCard, ProductCard, Delivery)
+│   ├── layout/       # Layout компоненти (Navbar, Footer)
+│   └── sections/     # Секції сторінки (Hero, About, Features, FAQ, Contact)
+├── context/          # React Context (CartContext, AuthContext)
+├── hooks/            # Custom hooks (useBentoTilt, useProductQuantity)
+├── pages/            # Сторінки (Home, CartPage, AdminPage)
+└── services/         # API сервіси (api.js, novaPoshtaService)
+
+backend/
+├── src/
+│   ├── controllers/  # Бізнес логіка (auth, products, orders)
+│   ├── middleware/   # JWT авторизація, захист роутів
+│   └── routes/       # Express роути
+└── prisma/
+    └── schema.prisma # Схема бази даних
 ```
 
 ## 🏗️ Ключові архітектурні рішення
@@ -58,57 +66,47 @@ src/
 **State Management:**
 
 - `CartContext` з `useReducer` для глобального стану кошика
-- `AuthContext` для стану авторизації
-- Firebase Firestore для persistence
+- `AuthContext` для стану авторизації з JWT токеном в localStorage
 
-**Component Composition:**
+**Full Stack:**
 
-- `ProductCard` розбитий на `MediaDisplay`, `QuantityControl`, `PriceDisplay`
-- `Features` секція використовує `BentoTilt`, `BentoCard`, `NutritionCard`
+- REST API на Express з JWT авторизацією
+- PostgreSQL через Prisma ORM
+- Розділений деплой: Vercel + Railway
 
 ## 🚀 Швидкий старт
 
 ```bash
-# Встановити залежності
+# Frontend
 npm install
-
-# Створити .env файл
 cp .env.example .env
-# Заповнити змінні середовища
-
-# Запустити dev server
 npm run dev
 
-# Білд для production
-npm run build
-
-# Запустити тести
-npm run test
-
-# Coverage звіт
-npm run test:coverage
-
-# Bundle analysis
-npm run analyze
+# Backend
+cd backend
+npm install
+npx prisma migrate dev
+npm run dev
 ```
 
 ## 🔑 Environment Variables
 
 ```env
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
+# Frontend
+VITE_API_URL=http://localhost:5000/api
 VITE_NOVA_POSHTA_API_KEY=
+
+# Backend
+DATABASE_URL=
+JWT_SECRET=
+PORT=5000
 ```
 
 ## 🧪 Тестування
 
 ```bash
-npm run test           # Запустити тести
-npm run test:coverage  # Coverage звіт
+npm run test
+npm run test:coverage
 ```
 
 Покриття тестами:
@@ -120,17 +118,16 @@ npm run test:coverage  # Coverage звіт
 ## 📊 Performance
 
 - ✅ Lazy loading всіх секцій
-- ✅ Code splitting (окремі chunks для кожної секції)
+- ✅ Code splitting
 - ✅ Bundle analysis через rollup-plugin-visualizer
-- ✅ Tree shaking
 - ✅ Gzip compression на Vercel
 
 ## 🔒 Безпека
 
-- Firebase Security Rules для Firestore
+- JWT токени для авторизації
 - Environment variables для секретних ключів
 - Protected routes для Admin панелі
-- Авторизовані домени в Firebase
+- `isAdmin` флаг в базі даних
 
 ## 📄 Ліцензія
 
